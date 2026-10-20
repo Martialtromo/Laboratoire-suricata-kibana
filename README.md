@@ -35,3 +35,24 @@ Voir [installation](docs/installation.md), [scénarios](docs/scenarios.md), [not
 La documentation, les règles, le script `notify.py` et les captures de preuve sont inclus dans ce dépôt. Le fichier de configuration fourni est un extrait, pas un remplacement complet de suricata.yaml. Les sources et états secrets restent hors du dépôt.
 
 Aucune exploitation réussie n'est revendiquée. Ce laboratoire utilise un IDS passif : il observe et alerte, sans bloquer les requêtes.
+## Schéma d’architecture
+
+```mermaid
+flowchart TD
+    C["VM cliente : 192.168.56.101"] --> N["Nginx et SSH : serveur 192.168.56.102"]
+    C --> S["Suricata IDS : interface enp0s8"]
+    S --> E["Alertes : eve.json"]
+    N --> L["Journaux Nginx et authentification"]
+    E --> G["syslog-ng"]
+    L --> G
+    G -->|"HTTPS avec authentification"| ES["Elasticsearch local"]
+    ES --> K["Kibana : Discover et dashboard"]
+    E --> P["Script notify.py"]
+    P -->|"SMTP avec STARTTLS"| M["Courriel administrateur"]
+```
+
+Suricata observe le trafic sans le bloquer. Syslog-ng collecte
+les événements réseau et les journaux des services pour les
+transmettre à Elasticsearch. Kibana permet leur consultation
+et leur visualisation. Le script de notification lit directement
+eve.json et envoie les alertes par courriel.
