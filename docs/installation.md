@@ -129,3 +129,56 @@ Le premier test TCP de SSH utilise aussi `nc` (paquet netcat-openbsd si absent).
 ## Validation de la chaîne
 L'alerte préexistante SID 2027695 a été retrouvée dans eve.json, dans une réponse Elasticsearch et dans Discover (19:43:54.381, source 10.0.2.15). Index observé : projet-suricata-20261019.
 Les cinq règles locales ont ensuite été vérifiées dans eve.json et Discover.
+## Configuration Elasticsearch et Kibana observée
+
+### Elasticsearch
+
+La commande suivante a confirmé une écoute locale sur `127.0.0.1:9200` :
+
+```bash
+sudo ss -ltnp 'sport = :9200'
+```
+
+Syslog-ng et Kibana se connectent à Elasticsearch en HTTPS sur le serveur.
+
+### Kibana
+
+Les paramètres suivants ont été relevés dans `/etc/kibana/kibana.yml` :
+
+```yaml
+server.host: "192.168.56.102"
+elasticsearch.hosts: ["https://127.0.0.1:9200"]
+```
+
+Le paramètre `elasticsearch.ssl.certificateAuthorities` désigne un certificat d’autorité présent dans `/var/lib/kibana/`. Son chemin doit être adapté à chaque installation.
+
+L’interface Kibana du laboratoire est accessible à :
+`http://192.168.56.102:5601`
+
+### Vues de données
+
+Dans Discover, les vues utilisées sont :
+
+| Vue | Modèle d’indexation | Champ temporel |
+|---|---|---|
+| Projet sécurité | projet-* | timestamp |
+| Journaux système et web | projet-system-* | timestamp |
+
+Pour créer la vue des journaux système et web :
+
+1. Ouvrir Discover et le sélecteur de vue de données.
+2. Choisir « Créer une vue de données ».
+3. Saisir le nom « Journaux système et web ».
+4. Saisir le modèle `projet-system-*`.
+5. Choisir le champ temporel `timestamp`.
+6. Enregistrer la vue.
+
+Pour consulter les événements, sélectionner une période couvrant les tests, puis utiliser :
+
+- Alertes Suricata : `event_type : "alert"` dans « Projet sécurité ».
+- Journaux SSH : `program : "sshd"` dans « Journaux système et web ».
+- Recherche de requêtes GET : `message : *GET*` dans « Journaux système et web ». Examiner le contenu du message pour confirmer qu’il s’agit d’un journal HTTP.
+
+### Limites de reproduction
+
+Cette section décrit les paramètres observés sur le serveur. La procédure initiale de configuration de la sécurité Elastic, de mise en place des certificats et d’attribution des droits au compte de collecte reste à documenter. Les mots de passe et jetons sont exclus du dépôt.
