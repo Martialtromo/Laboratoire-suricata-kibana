@@ -178,3 +178,29 @@ Pour examiner un événement, relever ses informations puis rechercher les journ
 - La répartition par IP source permet d’identifier les sources générant le plus d’alertes.
 
 Ces panneaux se lisent avec le filtre et la période sélectionnés. Une fréquence élevée d’alertes ne prouve pas, à elle seule, une compromission.
+## Export et import du dashboard
+
+Le dashboard « Supervision Suricata » a été exporté depuis
+Kibana avec ses objets associés.
+
+- [Fichier d’export du dashboard](../configs/supervision-suricata.ndjson)
+
+### Procédure d’import
+
+1. Ouvrir Stack Management → Saved Objects / Objets enregistrés.
+2. Cliquer sur Importer.
+3. Sélectionner `supervision-suricata.ndjson`.
+4. Examiner les éventuels conflits avant de confirmer :
+   ne pas écraser involontairement des objets existants.
+5. Ouvrir le dashboard « Supervision Suricata ».
+6. Choisir une période contenant les événements du laboratoire.
+
+L’export contient la configuration des objets Kibana,
+pas les journaux stockés dans Elasticsearch. Les index
+correspondants doivent être alimentés pour afficher des résultats.
+
+Utiliser de préférence la même version de Kibana que celle
+du laboratoire pour la reproduction.
+
+Le fichier a été exporté ; sa réimportation n’a pas encore
+été validée dans un espace de test.
