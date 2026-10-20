@@ -30,6 +30,6 @@ Voir [installation](docs/installation.md), [scénarios](docs/scenarios.md), [not
 5. Comparer SID, heure, IP source et destination dans eve.json et Kibana.
 
 ## État du dépôt
-La documentation et les règles sont préparées. Avant la remise, ajouter le script `notify.py` réellement installé sur la VM et les captures expurgées. Le fichier de configuration fourni est un extrait, pas un remplacement complet de suricata.yaml. Les sources et états secrets restent hors du dépôt.
+La documentation, les règles, le script `notify.py` et les captures de preuve sont inclus dans ce dépôt. Le fichier de configuration fourni est un extrait, pas un remplacement complet de suricata.yaml. Les sources et états secrets restent hors du dépôt.
 
 Aucune exploitation réussie n'est revendiquée. Ce laboratoire utilise un IDS passif : il observe et alerte, sans bloquer les requêtes.
