@@ -23,7 +23,7 @@ Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été 
 - [x] Contrôle négatif documenté : réponse HTTP 200 horodatée et recherche Kibana sans alerte correspondante, avec liens vers les deux captures dans docs/scenarios.md.
 - [x] Dashboard exporté dans `configs/supervision-suricata.ndjson`, puis réimporté et vérifié dans l’espace de test Kibana avec 115 alertes visibles. Preuve et procédure dans `docs/scenarios.md`.
 - [x] Validation après redémarrage réalisée le 20 octobre 2026 : sept services actifs, collecte système reçue dans Kibana et scénario SQL détecté avec courriel reçu. Preuves dans docs/installation.md.
-- [ ] Tester les erreurs d'envoi et la rotation EVE pour étendre la validation.
+- [ ] Configurer et tester une rotation EVE contrôlée. Aucune politique logrotate Suricata n’est actuellement présente ; le test a été reporté pour préserver les journaux actifs.
 - [ ] Relire tous les fichiers et vérifier l'absence de secrets avant publication.
 
 Améliorations possibles : compte de service dédié pour les notifications, meilleure journalisation des doublons, suivi des anciens fichiers tournés pendant les arrêts, ajustement des seuils et séparation des services.
