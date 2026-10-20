@@ -182,3 +182,22 @@ Pour consulter les événements, sélectionner une période couvrant les tests, 
 ### Limites de reproduction
 
 Cette section décrit les paramètres observés sur le serveur. La procédure initiale de configuration de la sécurité Elastic, de mise en place des certificats et d’attribution des droits au compte de collecte reste à documenter. Les mots de passe et jetons sont exclus du dépôt.
+## Sécurité Elasticsearch observée
+
+Les paramètres suivants ont été relevés dans `/etc/elasticsearch/elasticsearch.yml` :
+
+```yaml
+xpack.security.enabled: true
+
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+
+http.host: 127.0.0.1
+```
+
+La sécurité et le chiffrement HTTPS de l’API sont activés. L’API écoute uniquement sur l’adresse locale du serveur.
+
+Le fichier `http.p12` contient du matériel cryptographique privé et reste hors du dépôt. Les clients Kibana et syslog-ng utilisent un certificat d’autorité pour vérifier le certificat du serveur.
+
+Ces paramètres décrivent l’installation observée. Ils ne suffisent pas à recréer les certificats ni les comptes et leurs autorisations.
