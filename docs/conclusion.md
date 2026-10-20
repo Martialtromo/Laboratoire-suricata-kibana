@@ -1,6 +1,6 @@
 # Conclusion et limites
 
-Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été retrouvées dans eve.json et Discover. Le dashboard offre une synthèse des alertes. La notification Gmail vers Outlook a été reçue et le service systemd est actif. Le test rapporté confirme la suppression des doublons pendant cinq minutes pour le même SID et la même source.
+Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été retrouvées dans eve.json et Discover. Le dashboard offre une synthèse des alertes. La notification Gmail vers une autre adresse Gmail a été reçue et le service systemd est actif. Le test rapporté confirme la suppression des doublons pendant cinq minutes pour le même SID et la même source.
 
 ## Limites
 - Faux positifs possibles ; la règle TCP mesure une fréquence de SYN, pas la diversité des ports.
