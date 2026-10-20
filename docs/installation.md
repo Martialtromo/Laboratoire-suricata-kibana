@@ -23,7 +23,62 @@ Ces vérifications décrivent l’environnement installé. Elles ne constituent 
 Syslog-ng lit les événements Suricata, les journaux Nginx et les messages d’authentification. Il les transmet à Elasticsearch en HTTPS avec vérification du certificat.
 
 La configuration, les commandes de validation et les preuves de réception dans Kibana sont présentées dans le [guide syslog-ng](syslog-ng.md).
+## Installation des paquets
 
+Les commandes ci-dessous ont été retrouvées dans l’historique du serveur. Les versions installées ont été vérifiées séparément. Les commandes répétées dans l’historique ne sont présentées qu’une fois.
+
+### 1. Services web, SSH et collecte
+
+```bash
+sudo apt install -y nginx openssh-server syslog-ng syslog-ng-mod-http
+```
+
+Nginx fournit le service HTTP des tests. SSH permet les essais de connexions répétées. Le module HTTP de syslog-ng permet l’envoi des journaux à Elasticsearch.
+
+### 2. Outils nécessaires
+
+```bash
+sudo apt install -y curl wget gnupg ca-certificates git nano jq
+sudo apt install -y software-properties-common
+```
+
+### 3. Suricata
+
+Ajout du dépôt OISF stable et installation :
+
+```bash
+sudo add-apt-repository -y ppa:oisf/suricata-stable
+sudo apt install -y suricata suricata-update
+```
+
+La configuration de l’interface réseau et des règles locales est décrite plus bas.
+
+### 4. Dépôt Elastic 9.x
+
+Téléchargement et conversion de la clé de signature :
+
+```bash
+wget -qO /tmp/elastic.asc https://artifacts.elastic.co/GPG-KEY-elasticsearch
+sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg /tmp/elastic.asc
+```
+
+Ajout du dépôt :
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-9.x.list
+```
+
+Avant une nouvelle installation, actualiser les listes de paquets avec `sudo apt update`. Cette étape est nécessaire à la reproduction, mais n’apparaît pas dans l’extrait filtré de l’historique.
+
+### 5. Elasticsearch et Kibana
+
+```bash
+sudo apt install -y elasticsearch kibana
+```
+
+Ces commandes installent les paquets. La reproduction complète nécessite aussi la configuration d’Elasticsearch, de Kibana, des certificats et des autorisations du compte de collecte. Ces étapes restent à détailler.
+
+La configuration de collecte observée est présentée dans le [guide syslog-ng](syslog-ng.md). Aucun mot de passe réel ne doit être ajouté au dépôt.
 ## Prérequis
 Deux VM Ubuntu joignables sur 192.168.56.0/24. Sur le serveur, Suricata, Nginx, SSH, Elasticsearch et Kibana étaient déjà présents. Les versions et étapes initiales non relevées ne sont pas inventées ici. Ce guide décrit les modifications réalisées pendant la session, pas un déploiement intégral depuis une VM vierge.
 
