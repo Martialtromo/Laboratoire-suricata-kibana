@@ -21,6 +21,7 @@ Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été 
 - [x] Script notify.py installé sur la VM copié dans scripts/.
 - [x] Captures des cinq scénarios et preuves de collecte ajoutées, avec explications dans la documentation.
 - [x] Contrôle négatif documenté : réponse HTTP 200 horodatée et recherche Kibana sans alerte correspondante, avec liens vers les deux captures dans docs/scenarios.md.
+- [x] Dashboard exporté avec ses objets associés dans configs/supervision-suricata.ndjson ; procédure d’import documentée dans docs/scenarios.md. Réimportation non encore testée.
 - [ ] Vérifier les services après un redémarrage réel de la VM.
 - [ ] Tester les erreurs d'envoi et la rotation EVE pour étendre la validation.
 - [ ] Relire tous les fichiers et vérifier l'absence de secrets avant publication.
