@@ -1,4 +1,28 @@
 # Installation et configuration observées
+## Environnement et versions vérifiés
+
+Le serveur utilise Ubuntu 26.04.1 LTS sous VirtualBox.
+
+| Composant | Version du paquet installé | Dépôt proposant cette version |
+|---|---|---|
+| Suricata | 1:8.0.7-0ubuntu3 | PPA OISF suricata-stable |
+| syslog-ng | 4.8.1-7build2 | Ubuntu universe |
+| Elasticsearch | 9.5.5 | Elastic 9.x |
+| Kibana | 9.5.5 | Elastic 9.x |
+
+Commandes utilisées pour relever ces informations :
+
+    cat /etc/os-release
+    dpkg-query -W suricata syslog-ng elasticsearch kibana
+    apt-cache policy suricata syslog-ng elasticsearch kibana
+
+Ces vérifications décrivent l’environnement installé. Elles ne constituent pas un historique des commandes d’installation exécutées.
+
+## Collecte avec syslog-ng
+
+Syslog-ng lit les événements Suricata, les journaux Nginx et les messages d’authentification. Il les transmet à Elasticsearch en HTTPS avec vérification du certificat.
+
+La configuration, les commandes de validation et les preuves de réception dans Kibana sont présentées dans le [guide syslog-ng](syslog-ng.md).
 
 ## Prérequis
 Deux VM Ubuntu joignables sur 192.168.56.0/24. Sur le serveur, Suricata, Nginx, SSH, Elasticsearch et Kibana étaient déjà présents. Les versions et étapes initiales non relevées ne sont pas inventées ici. Ce guide décrit les modifications réalisées pendant la session, pas un déploiement intégral depuis une VM vierge.
