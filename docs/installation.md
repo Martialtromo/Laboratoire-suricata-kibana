@@ -201,3 +201,32 @@ La sécurité et le chiffrement HTTPS de l’API sont activés. L’API écoute 
 Le fichier `http.p12` contient du matériel cryptographique privé et reste hors du dépôt. Les clients Kibana et syslog-ng utilisent un certificat d’autorité pour vérifier le certificat du serveur.
 
 Ces paramètres décrivent l’installation observée. Ils ne suffisent pas à recréer les certificats ni les comptes et leurs autorisations.
+## Validation des services et des configurations
+
+Vérification effectuée le 20 octobre 2026 à 02:51
+(UTC−04:00) sur le serveur Ubuntu.
+
+L’interface du laboratoire `enp0s8` est active et possède
+l’adresse `192.168.56.102/24`.
+
+La commande suivante retourne `active` pour les sept services :
+
+    systemctl is-active suricata syslog-ng elasticsearch kibana nginx ssh suricata-notify
+
+La validation de Suricata 8.0.7 a été exécutée avec :
+
+    sudo suricata -T -c /etc/suricata/suricata.yaml
+
+Résultat : configuration chargée avec succès.
+Un avertissement concerne la direction de détection de la
+règle SSH SID 1000002 ; il n’empêche pas le chargement.
+
+La vérification syslog-ng a également été exécutée :
+
+    sudo syslog-ng --syntax-only
+
+Aucune erreur n’est affichée dans la capture.
+
+Cette vérification confirme l’état des services à cet instant.
+Elle ne constitue pas une validation après redémarrage ni,
+à elle seule, une preuve de collecte de nouveaux événements.
