@@ -26,3 +26,10 @@ Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été 
 - [ ] Relire tous les fichiers et vérifier l'absence de secrets avant publication.
 
 Améliorations possibles : compte de service dédié pour les notifications, meilleure journalisation des doublons, suivi des anciens fichiers tournés pendant les arrêts, ajustement des seuils et séparation des services.
+## Perspectives et veille technologique
+
+La veille portera sur les avis de sécurité et les notes de version de Suricata, syslog-ng, Elasticsearch et Kibana.
+
+Les mises à jour seront d’abord évaluées sur une copie du laboratoire. Les cinq scénarios seront rejoués pour vérifier la détection, la collecte, la visualisation et les notifications.
+
+Les améliorations envisagées sont l’ajustement des seuils pour réduire les faux positifs, la surveillance des interruptions de collecte et une politique de conservation des journaux adaptée à l’espace disponible.
