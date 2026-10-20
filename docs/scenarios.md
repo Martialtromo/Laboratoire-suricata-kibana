@@ -134,3 +134,14 @@ Lire l’heure, la signature, les IP source et destination, le port et la sévé
 Dans la vue Journaux système et web, examiner les événements du service concerné sur la même période. La concordance des heures, des IP et des requêtes aide à relier les journaux ; une proximité temporelle seule ne suffit pas.
 
 Les journaux Suricata sont prioritaires pour les cinq détections. Les journaux SSH apportent le contexte du scénario 2, et les journaux Nginx celui des scénarios 3 à 5. Un scan TCP peut ne produire aucun journal applicatif si aucune requête n’atteint l’application.
+## Captures des cinq scénarios
+
+Chaque capture présente le filtre du SID, la période sélectionnée et les résultats dans Kibana.
+
+- [Scénario 1 — Scan TCP, SID 1000001](../captures/scenario-1-scan.jpeg)
+- [Scénario 2 — Connexions SSH répétées, SID 1000002](../captures/scenario-2-ssh.jpeg)
+- [Scénario 3 — Motif SQL, SID 1000003](../captures/scenario-3-sql.jpeg)
+- [Scénario 4 — Parcours de chemin, SID 1000004](../captures/scenario-4-chemin.jpeg)
+- [Scénario 5 — Requêtes HTTP fréquentes, SID 1000005](../captures/scenario-5-http.jpeg)
+
+Pour lire ces preuves, vérifier le SID recherché, la période et les événements affichés. Les résultats montrent le déclenchement des règles ; ils ne prouvent pas une exploitation réussie.
