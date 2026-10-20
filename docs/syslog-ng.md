@@ -43,3 +43,20 @@ Le service syslog-ng est actif et la vérification de syntaxe a retourné le cod
 - [Requête web dans Kibana](../captures/journaux-web-kibana.jpeg)
 ## Sécurité
 Les mots de passe sont remplacés dans l’exemple publié. Cet exemple doit être adapté localement avant utilisation ; il ne remplace pas directement la configuration du serveur.
+## Vérification de la collecte après changement du mot de passe
+
+Un événement de test a été généré sur le serveur :
+
+```bash
+logger -p auth.notice -t verification-collecte "Test de collecte apres mise a jour"
+```
+
+Dans Discover, la vue « Journaux système et web » a été sélectionnée avec une période couvrant le test et le filtre :
+
+```text
+program : "verification-collecte"
+```
+
+Le message a été retrouvé dans Kibana, confirmant la réception de ce nouvel événement après le changement du mot de passe du compte de collecte.
+
+[Voir la preuve de réception](../captures/verification-collecte.jpeg)
