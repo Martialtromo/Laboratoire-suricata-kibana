@@ -82,6 +82,11 @@ pendant que le service fonctionne.
 ## Preuves observées
 Le message de test SMTP a été reçu. Une alerte SQL a ensuite déclenché un courriel depuis le script manuel. Le service a démarré à 22:55:44 avec Surveillance EVE active. Le journal indique Courriel envoye pour 1000003|192.168.56.101 à 22:57:28 ; réception à 22:57 confirmée. Deux requêtes supplémentaires dans les cinq minutes n'ont pas généré de courriel supplémentaire selon le test rapporté.
 
-L'activation au démarrage est confirmée ; un redémarrage réel de la VM n'a pas encore été testé. Les erreurs SMTP et rotations sont prises en charge dans le code proposé mais n'ont pas été simulées.
+Le fonctionnement après redémarrage a été vérifié le
+20 octobre 2026 : le service était actif et une nouvelle
+alerte SID 1000003 à 05:20:38 (UTC−04:00) a donné lieu
+à un courriel reçu.
+
+[Voir la validation après redémarrage](installation.md#validation-après-redémarrage-du-20-octobre-2026)
 
 Ne jamais publier smtp.env, le code d'application Google, les jetons ou une capture les montrant. Le modèle smtp.env.example ne contient que des valeurs factices.
