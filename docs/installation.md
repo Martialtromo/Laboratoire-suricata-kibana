@@ -347,3 +347,39 @@ dans la section de configuration observée.
 Cette procédure concerne une nouvelle installation.
 Ne pas réenrôler le Kibana déjà fonctionnel du laboratoire.
 Les jetons et mots de passe ne sont pas publiés dans ce dépôt.
+
+## Validation après redémarrage du 20 octobre 2026
+
+Le serveur a démarré à 05:04:10, heure America/Toronto
+(UTC−04:00).
+
+À 05:13:58, les sept services suivants étaient actifs :
+Suricata, syslog-ng, Elasticsearch, Kibana, Nginx, SSH
+et suricata-notify.
+
+### Vérification de la collecte système
+
+Le message de test « Validation apres redemarrage 2026-10-20 »
+a été retrouvé dans Kibana à 05:15:09, dans la vue
+« Journaux système et web ».
+
+### Vérification de la détection et de la notification
+
+Le scénario HTTP contenant le motif UNION SELECT a été
+rejoué depuis 192.168.56.101 vers 192.168.56.102.
+
+L’alerte SID 1000003 a été retrouvée dans Kibana à
+05:20:38.102. Un courriel correspondant au même SID
+et au même horodatage a également été reçu.
+
+Ces observations valident, après redémarrage, l’état des
+services, la collecte système et la détection avec notification
+pour le scénario SQL. Les quatre autres scénarios n’ont pas
+été rejoués lors de cette vérification.
+
+### Preuves
+
+- [Services actifs après redémarrage](../captures/redemarrage-services.jpeg)
+- [Collecte système après redémarrage](../captures/redemarrage-collecte.jpeg)
+- [Courriel reçu après redémarrage](../captures/redemarrage-courriel.jpeg)
+- [Alerte Suricata dans Kibana](../captures/redemarrage-alerte-kibana.jpeg)
