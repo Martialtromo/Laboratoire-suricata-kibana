@@ -76,3 +76,61 @@ Dans Discover, sur une période englobant cette requête et excluant les anciens
 event_type : "alert" and alert.signature_id >= 1000001 and alert.signature_id <= 1000005
 ```
 L'utilisateur a confirmé zéro résultat. La sortie terminal horodatée avec HTTP 200 n'a pas été transmise ; conserver cette preuve pour clôturer le contrôle.
+## Justification des scénarios et journaux prioritaires
+
+### 1. Scan TCP — SID 1000001
+Ce scénario représente une recherche de services accessibles, étape possible de reconnaissance avant une attaque.
+
+Les alertes Suricata permettent d’examiner l’heure, l’IP source, la destination et les ports ciblés. La règle compte des SYN fréquents : elle ne prouve pas à elle seule un scan de ports distincts.
+
+Action suggérée : identifier la source et vérifier si cette activité est autorisée.
+
+### 2. Connexions SSH répétées — SID 1000002
+Ce scénario permet de détecter une fréquence inhabituelle de connexions au service d’administration.
+
+Comparer les alertes Suricata aux journaux SSH dans Kibana avec `program : "sshd"`. Vérifier les heures, les IP et les ports sources lorsqu’ils sont disponibles.
+
+Le test réalisé montre des connexions avec un utilisateur inexistant, sans essai de mot de passe. Il ne démontre donc pas une attaque par force brute sur les mots de passe.
+
+Action suggérée : examiner les comptes visés et rechercher d’éventuelles authentifications réussies.
+
+### 3. Motif SQL dans une URL — SID 1000003
+Le motif UNION SELECT représente une recherche possible de vulnérabilité d’injection SQL.
+
+Comparer l’alerte Suricata au journal d’accès Nginx : heure, IP source, URL et code de réponse HTTP.
+
+La réponse HTTP 200 observée indique que le serveur a répondu ; elle ne démontre pas une injection SQL réussie.
+
+Action suggérée : examiner l’application et ses journaux avant de conclure à une exploitation.
+
+### 4. Parcours de chemin — SID 1000004
+Le motif ../ représente une tentative possible de remonter dans les répertoires pour atteindre une ressource non autorisée.
+
+Comparer l’alerte Suricata aux journaux d’accès et, si disponibles, d’erreur Nginx.
+
+Le serveur a répondu HTTP 400 pendant le test. Aucun accès à un fichier sensible n’a été démontré.
+
+Action suggérée : vérifier le chemin demandé et le traitement des URL par le serveur et l’application.
+
+### 5. Requêtes HTTP fréquentes — SID 1000005
+Ce scénario représente une activité automatisée ou un volume inhabituel de requêtes web.
+
+Comparer les alertes Suricata au nombre de requêtes Nginx sur la même période, à leur source et aux codes de réponse.
+
+Le test est limité à 30 requêtes. Il ne démontre pas un déni de service.
+
+Action suggérée : vérifier si le trafic est attendu et examiner son effet sur le service.
+
+## Lecture des preuves Kibana
+
+Pour chaque scénario, filtrer sur son SID dans la vue Projet sécurité :
+
+    event_type : "alert" and alert.signature_id : 1000003
+
+Adapter le SID au scénario et choisir une période couvrant le test.
+
+Lire l’heure, la signature, les IP source et destination, le port et la sévérité. Le nombre de documents correspond à des événements enregistrés, pas nécessairement à autant d’attaques distinctes.
+
+Dans la vue Journaux système et web, examiner les événements du service concerné sur la même période. La concordance des heures, des IP et des requêtes aide à relier les journaux ; une proximité temporelle seule ne suffit pas.
+
+Les journaux Suricata sont prioritaires pour les cinq détections. Les journaux SSH apportent le contexte du scénario 2, et les journaux Nginx celui des scénarios 3 à 5. Un scan TCP peut ne produire aucun journal applicatif si aucune requête n’atteint l’application.
