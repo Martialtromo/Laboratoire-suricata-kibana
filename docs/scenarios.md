@@ -75,7 +75,22 @@ Dans Discover, sur une période englobant cette requête et excluant les anciens
 ```text
 event_type : "alert" and alert.signature_id >= 1000001 and alert.signature_id <= 1000005
 ```
-L'utilisateur a confirmé zéro résultat. La sortie terminal horodatée avec HTTP 200 n'a pas été transmise ; conserver cette preuve pour clôturer le contrôle.
+### Résultat du contrôle négatif du 20 octobre 2026
+
+La requête HTTP normale envoyée vers http://192.168.56.102/
+entre 03:13:18 et 03:13:19 (America/Toronto, UTC−04:00)
+a reçu une réponse HTTP 200.
+
+Dans Discover, sur la période du 20 octobre 2026 de 03:13
+à 03:14, aucun résultat n’a été retrouvé avec le filtre
+des SID 1000001 à 1000005 présenté ci-dessus.
+
+Ce résultat est cohérent avec le comportement attendu
+pour cette requête normale. Il ne garantit pas l’absence
+de faux positifs pour tous les trafics légitimes.
+
+- [Voir la preuve terminal HTTP 200](../captures/controle-negatif-terminal.jpeg)
+- [Voir la vérification Kibana](../captures/controle-negatif-kibana.jpeg)
 ## Justification des scénarios et journaux prioritaires
 
 ### 1. Scan TCP — SID 1000001
