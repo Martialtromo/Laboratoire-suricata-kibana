@@ -1,13 +1,28 @@
-# Script de notification
+# Script de notification Suricata
 
-Ajouter ici le fichier notify.py réellement installé et testé sur la VM serveur. Le dossier préparé n'inclut pas une copie supposée de ce fichier : la version réelle peut différer du code proposé dans la conversation.
+Le script `notify.py` est inclus dans ce dossier.
 
-Depuis un dossier de projet sur la VM, copier uniquement le script :
-```bash
-sudo cat /opt/suricata-notify/notify.py > scripts/notify.py
-```
-Inspecter le fichier avant de le publier : il doit lire la configuration externe, sans contenir de mot de passe ni d'adresse personnelle codée en dur.
+Il surveille `/var/log/suricata/eve.json` et sélectionne les
+alertes correspondant aux SID 1000001 à 1000005.
 
-Ne jamais copier /etc/suricata-notify/smtp.env ni /var/lib/suricata-notify/state.json dans le dépôt. Le test_mail.py n'est pas nécessaire à l'exécution du service.
+Il envoie un courriel contenant l’heure, la signature,
+les adresses IP, le port de destination, la sévérité et
+une action suggérée.
 
-Pour l'utilisation et les limites, consulter docs/notifications.md.
+Les notifications sont limitées à un envoi par couple
+SID/IP source toutes les 300 secondes.
+
+## Fichiers utilisés sur le serveur
+
+- Script : `/opt/suricata-notify/notify.py`
+- Configuration SMTP : `/etc/suricata-notify/smtp.env`
+- État persistant : `/var/lib/suricata-notify/state.json`
+- Service : `suricata-notify.service`
+
+Les identifiants SMTP et le fichier d’état restent hors du dépôt.
+
+## Documentation
+
+- [Fonctionnement, validation et limites](../docs/notifications.md)
+- [Modèle de configuration SMTP](../configs/smtp.env.example)
+- [Service systemd](../configs/suricata-notify.service)
