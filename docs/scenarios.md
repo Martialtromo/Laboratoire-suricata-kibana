@@ -154,3 +154,12 @@ Le dashboard présente un tableau des alertes et un compteur. Le tableau permet 
 Sur la capture, le filtre `event_type : "alert"` est appliqué et le compteur affiche 118 événements sur la période sélectionnée. Ce total représente des alertes enregistrées, pas 118 attaques distinctes. Il dépend du filtre et de la période affichés.
 
 Pour examiner un événement, relever ses informations puis rechercher les journaux correspondants dans Discover.
+### Autres panneaux du dashboard
+
+[Voir la chronologie, les signatures et les IP sources](../captures/dashboard-suricata-suite.jpeg)
+
+- La chronologie permet de repérer les périodes concentrant les alertes.
+- La répartition par signature permet de comparer les types de détections.
+- La répartition par IP source permet d’identifier les sources générant le plus d’alertes.
+
+Ces panneaux se lisent avec le filtre et la période sélectionnés. Une fréquence élevée d’alertes ne prouve pas, à elle seule, une compromission.
