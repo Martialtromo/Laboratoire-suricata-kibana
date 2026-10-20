@@ -20,7 +20,7 @@ Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été 
 - [x] Courriel automatique reçu et anti-doublons testé.
 - [x] Script notify.py installé sur la VM copié dans scripts/.
 - [x] Captures des cinq scénarios et preuves de collecte ajoutées, avec explications dans la documentation.
-- [ ] Conserver la preuve terminal du contrôle négatif avec l'heure et HTTP 200.
+- [x] Contrôle négatif documenté : réponse HTTP 200 horodatée et recherche Kibana sans alerte correspondante, avec liens vers les deux captures dans docs/scenarios.md.
 - [ ] Vérifier les services après un redémarrage réel de la VM.
 - [ ] Tester les erreurs d'envoi et la rotation EVE pour étendre la validation.
 - [ ] Relire tous les fichiers et vérifier l'absence de secrets avant publication.
