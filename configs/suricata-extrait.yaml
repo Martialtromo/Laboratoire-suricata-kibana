@@ -1,0 +1,9 @@
+# Extrait documentaire : ne pas remplacer suricata.yaml par ce fichier.
+# Adapter les blocs existants et verifier HOME_NET dans le fichier reel.
+af-packet:
+  - interface: enp0s8
+    cluster-id: 99
+
+rule-files:
+  - suricata.rules
+  - /etc/suricata/rules/local.rules

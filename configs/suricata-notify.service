@@ -1,0 +1,19 @@
+[Unit]
+Description=Notifications courriel Suricata Lab
+Wants=network-online.target
+After=network-online.target suricata.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 -u /opt/suricata-notify/notify.py
+Restart=on-failure
+RestartSec=10
+UMask=0077
+NoNewPrivileges=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/suricata-notify
+
+[Install]
+WantedBy=multi-user.target
