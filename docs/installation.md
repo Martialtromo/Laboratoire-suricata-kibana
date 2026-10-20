@@ -255,6 +255,7 @@ Configuration du rôle observée dans Kibana :
 | Modèle d’index | `projet-*` |
 | Privilèges d’index | `write`, `auto_configure` |
 | Privilèges de cluster | Aucun sélectionné |
+[Voir les droits du rôle de collecte Elasticsearch](../captures/droits-collecte-elasticsearch.jpeg)
 
 ### Reproduction dans Kibana
 
