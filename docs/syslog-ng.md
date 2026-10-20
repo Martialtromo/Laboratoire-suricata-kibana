@@ -35,7 +35,12 @@ Consulter les messages du service :
 
     sudo journalctl -u syslog-ng -n 30 --no-pager
 
-Le service a été observé actif. Les alertes Suricata sont visibles dans Kibana. La réception des journaux Nginx et d’authentification reste à vérifier dans Kibana.
+Le service syslog-ng est actif et la vérification de syntaxe a retourné le code 0. Les alertes Suricata et les journaux SSH sont visibles dans Kibana. Un journal web affiche également la requête GET /?test=UNION%20SELECT provenant de 192.168.56.101, avec une réponse HTTP 200. Cette réponse ne prouve pas une injection SQL réussie.
+
+### Preuves
+- [Validation de la configuration](../captures/syslog-ng-validation.png)
+- [Journaux SSH dans Kibana](../captures/journaux-ssh-kibana.png)
+- [Requête web dans Kibana](../captures/journaux-web-kibana.png)
 
 ## Sécurité
 Les mots de passe sont remplacés dans l’exemple publié. Cet exemple doit être adapté localement avant utilisation ; il ne remplace pas directement la configuration du serveur.
