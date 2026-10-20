@@ -232,4 +232,4 @@ Elle ne constitue pas une validation après redémarrage ni,
 à elle seule, une preuve de collecte de nouveaux événements.
 ### Capture de validation
 
-![Validation des services et des configurations](../captures/validation-services-configurations.jpeg)
+![Validation des services et des configurations](../captures/Validation-services-configurations.jpeg)
