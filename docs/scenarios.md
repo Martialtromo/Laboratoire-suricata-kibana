@@ -202,5 +202,9 @@ correspondants doivent être alimentés pour afficher des résultats.
 Utiliser de préférence la même version de Kibana que celle
 du laboratoire pour la reproduction.
 
-Le fichier a été exporté ; sa réimportation n’a pas encore
-été validée dans un espace de test.
+La réimportation a été validée le 20 octobre 2026 dans
+l’espace Kibana « Test import Suricata ». Après avoir choisi
+« Last 24 hours », le dashboard s’est affiché avec 115 alertes
+et ses panneaux étaient renseignés.
+
+- [Voir le dashboard après import](../captures/dashboard-import-teste.jpeg)
