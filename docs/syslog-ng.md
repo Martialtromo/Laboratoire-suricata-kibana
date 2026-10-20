@@ -38,7 +38,7 @@ Consulter les messages du service :
 Le service syslog-ng est actif et la vérification de syntaxe a retourné le code 0. Les alertes Suricata et les journaux SSH sont visibles dans Kibana. Un journal web affiche également la requête GET /?test=UNION%20SELECT provenant de 192.168.56.101, avec une réponse HTTP 200. Cette réponse ne prouve pas une injection SQL réussie.
 
 ### Preuves
-- [Validation de la configuration](../captures/syslog-ng-validation.jpeg)
+- [Validation de la configuration](../captures/syslog-ng%20validation.jpeg)
 - [Journaux SSH dans Kibana](../captures/journaux-ssh-kibana.jpeg)
 - [Requête web dans Kibana](../captures/journaux-web-kibana.jpeg)
 ## Sécurité
