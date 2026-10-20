@@ -1,7 +1,9 @@
 # Mettre ce dossier sur GitHub sans connaître Git
 
 1. Décompresser l'archive sur votre ordinateur.
-2. Compléter scripts/notify.py depuis la VM et ajouter les preuves dans captures/.
+2. Le script `scripts/notify.py` et les captures sont inclus.
+   Vérifier les liens de la documentation et ajouter uniquement
+   les nouvelles preuves de validation.
 3. Se connecter à https://github.com avec son compte.
 4. Cliquer sur + puis New repository (Nouveau dépôt).
 5. Nom conseillé : laboratoire-suricata-kibana.
