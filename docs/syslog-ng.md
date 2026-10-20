@@ -60,3 +60,78 @@ program : "verification-collecte"
 Le message a été retrouvé dans Kibana, confirmant la réception de ce nouvel événement après le changement du mot de passe du compte de collecte.
 
 [Voir la preuve de réception](../captures/verification-collecte.jpeg)
+## Mise en place de la collecte sur une nouvelle installation
+
+Cette procédure complète la configuration fournie dans le dépôt.
+Elle ne doit pas écraser une installation déjà fonctionnelle.
+
+### 1. Installer le certificat d’autorité
+
+Depuis le serveur Elasticsearch, copier son certificat
+d’autorité public vers le répertoire utilisé par syslog-ng :
+
+```bash
+sudo install -d -m 755 /etc/syslog-ng/certs
+sudo install -m 644 -o root -g root \
+  /etc/elasticsearch/certs/http_ca.crt \
+  /etc/syslog-ng/certs/http_ca.crt
+```
+
+Adapter le chemin source si le certificat Elasticsearch
+se trouve ailleurs. Copier uniquement le certificat public,
+pas une clé privée ni le fichier http.p12.
+
+Sur le serveur du laboratoire, le certificat de destination
+a été vérifié avec :
+
+```bash
+sudo ls -l /etc/syslog-ng/certs/http_ca.crt
+```
+
+Résultat observé : propriétaire root:root et permissions 644.
+
+### 2. Installer la configuration
+
+Depuis la racine du dépôt, sur une nouvelle installation :
+
+```bash
+sudo install -m 600 -o root -g root \
+  configs/syslog-ng-projet.conf.example \
+  /etc/syslog-ng/conf.d/projet.conf
+sudo nano /etc/syslog-ng/conf.d/projet.conf
+```
+
+Remplacer les deux valeurs `REMPLACER_LOCALEMENT` par le
+mot de passe du compte `projet_ingest`.
+
+Vérifier que la source `s_src` existe dans la configuration
+principale. Adapter sa référence si elle porte un autre nom.
+
+Le processus syslog-ng doit pouvoir lire la configuration,
+le certificat et les journaux Suricata et Nginx.
+Adapter les permissions si le service utilise un compte dédié.
+
+### 3. Valider et démarrer
+
+```bash
+sudo syslog-ng --syntax-only
+sudo systemctl enable --now syslog-ng
+sudo systemctl restart syslog-ng
+sudo journalctl -u syslog-ng -n 30 --no-pager
+```
+
+### 4. Vérifier la réception
+
+```bash
+logger -p auth.notice -t verification-collecte "Test de collecte"
+```
+
+Dans Discover, sélectionner la vue des journaux système
+et web, une période couvrant le test, puis rechercher :
+
+```text
+program : "verification-collecte"
+```
+
+Vérifier la présence du nouveau message : un service actif
+ne suffit pas à confirmer la réception dans Elasticsearch.
