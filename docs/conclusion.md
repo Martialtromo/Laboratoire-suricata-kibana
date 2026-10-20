@@ -18,8 +18,8 @@ Les cinq scénarios ont déclenché les SID attendus et leurs alertes ont été 
 - [x] Alertes retrouvées dans eve.json et Kibana.
 - [x] Dashboard créé avec cinq panneaux.
 - [x] Courriel automatique reçu et anti-doublons testé.
-- [ ] Copier dans scripts/ le notify.py réellement installé sur la VM.
-- [ ] Ajouter les captures commentées et expurgées.
+- [x] Script notify.py installé sur la VM copié dans scripts/.
+- [x] Captures des cinq scénarios et preuves de collecte ajoutées, avec explications dans la documentation.
 - [ ] Conserver la preuve terminal du contrôle négatif avec l'heure et HTTP 200.
 - [ ] Vérifier les services après un redémarrage réel de la VM.
 - [ ] Tester les erreurs d'envoi et la rotation EVE pour étendre la validation.
