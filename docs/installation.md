@@ -76,7 +76,13 @@ Avant une nouvelle installation, actualiser les listes de paquets avec `sudo apt
 sudo apt install -y elasticsearch kibana
 ```
 
-Ces commandes installent les paquets. La reproduction complète nécessite aussi la configuration d’Elasticsearch, de Kibana, des certificats et des autorisations du compte de collecte. Ces étapes restent à détailler.
+Ces commandes installent les paquets. La reproduction complète nécessite aussi la configuration d’Elasticsearch, de Kibana, des certificats et des autorisations du compte de collecte.La connexion initiale par jeton d’enrôlement et les droits
+du compte de collecte sont décrits dans les sections
+« Connexion initiale de Kibana à Elasticsearch » et
+« Compte de collecte Elasticsearch » ci-dessous.
+La création manuelle des certificats n’est pas détaillée :
+la procédure proposée repose sur la sécurité automatique
+d’Elasticsearch.
 
 La configuration de collecte observée est présentée dans le [guide syslog-ng](syslog-ng.md). Aucun mot de passe réel ne doit être ajouté au dépôt.
 ## Prérequis
