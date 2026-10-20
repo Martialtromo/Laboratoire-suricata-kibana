@@ -2,7 +2,7 @@
 
 ## Configuration
 - Gmail expéditeur, avec validation en deux étapes et mot de passe d'application.
-- Réception : boîte Outlook scolaire.
+- Réception : boîte gmail.
 - SMTP : smtp.gmail.com:587 avec STARTTLS.
 - Secrets : /etc/suricata-notify/smtp.env, dossier mode 700 et fichier mode 600.
 - Script installé : /opt/suricata-notify/notify.py.
