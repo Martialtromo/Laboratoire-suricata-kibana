@@ -19,7 +19,15 @@ Le script sélectionne event_type=alert et les SID 1000001 à 1000005. Il envoie
 
 Le script n'offre pas une garantie de livraison exactement une fois : un arrêt entre l'acceptation SMTP et la sauvegarde de l'état peut produire un doublon. Une rotation pendant un arrêt prolongé peut laisser des événements d'un ancien fichier non traités. Ces cas ne sont pas testés.
 
+Aucune règle logrotate pour Suricata ou eve.json n’a été
+trouvée dans `/etc/logrotate.conf` ou `/etc/logrotate.d/`.
+Le bloc EVE de `/etc/suricata/suricata.yaml` utilise
+`filename: eve.json` et ne montre pas de paramètre de rotation.
 
+Le script contient une gestion de changements d’inode et
+de troncature, mais la rotation EVE n’a pas été testée
+sur cette installation. Aucun test de rotation forcée
+n’a été effectué afin de ne pas perturber les journaux actifs.
 ## Installation du service
 
 Les commandes suivantes permettent de reproduire l’installation.
