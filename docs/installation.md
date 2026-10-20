@@ -197,7 +197,18 @@ Pour consulter les événements, sélectionner une période couvrant les tests, 
 
 ### Limites de reproduction
 
-Cette section décrit les paramètres observés sur le serveur. La procédure initiale de configuration de la sécurité Elastic, de mise en place des certificats et d’attribution des droits au compte de collecte reste à documenter. Les mots de passe et jetons sont exclus du dépôt.
+Cette documentation présente les paramètres observés,
+la connexion initiale de Kibana par jeton d’enrôlement
+et les droits du compte de collecte.
+
+La procédure de reproduction repose sur la configuration
+automatique de la sécurité Elasticsearch. La création
+manuelle des certificats n’est pas couverte.
+
+La réinstallation complète sur des VM vierges n’a pas
+été validée. Les chemins des certificats, les adresses
+et les interfaces doivent être adaptés à l’environnement.
+Les mots de passe et jetons restent hors du dépôt.
 ## Sécurité Elasticsearch observée
 
 Les paramètres suivants ont été relevés dans `/etc/elasticsearch/elasticsearch.yml` :
