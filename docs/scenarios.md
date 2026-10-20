@@ -145,3 +145,12 @@ Chaque capture présente le filtre du SID, la période sélectionnée et les ré
 - [Scénario 5 — Requêtes HTTP fréquentes, SID 1000005](../captures/scenario-5-http.jpeg)
 
 Pour lire ces preuves, vérifier le SID recherché, la période et les événements affichés. Les résultats montrent le déclenchement des règles ; ils ne prouvent pas une exploitation réussie.
+## Dashboard de supervision
+
+[Voir la capture du dashboard Supervision Suricata](../captures/dashboard-suricata.jpeg)
+
+Le dashboard présente un tableau des alertes et un compteur. Le tableau permet de lire les heures, les IP source et destination et les signatures pour orienter l’analyse.
+
+Sur la capture, le filtre `event_type : "alert"` est appliqué et le compteur affiche 118 événements sur la période sélectionnée. Ce total représente des alertes enregistrées, pas 118 attaques distinctes. Il dépend du filtre et de la période affichés.
+
+Pour examiner un événement, relever ses informations puis rechercher les journaux correspondants dans Discover.
