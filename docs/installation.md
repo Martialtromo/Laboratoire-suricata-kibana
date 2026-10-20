@@ -80,7 +80,7 @@ Ces commandes installent les paquets. La reproduction complète nécessite aussi
 
 La configuration de collecte observée est présentée dans le [guide syslog-ng](syslog-ng.md). Aucun mot de passe réel ne doit être ajouté au dépôt.
 ## Prérequis
-Deux VM Ubuntu joignables sur 192.168.56.0/24. Sur le serveur, Suricata, Nginx, SSH, Elasticsearch et Kibana étaient déjà présents. Les versions et étapes initiales non relevées ne sont pas inventées ici. Ce guide décrit les modifications réalisées pendant la session, pas un déploiement intégral depuis une VM vierge.
+Deux VM Ubuntu joignables sur 192.168.56.0/24 sont nécessaires. Le serveur héberge Suricata, Nginx, SSH, syslog-ng, Elasticsearch et Kibana. Ce guide rassemble les commandes d’installation retrouvées dans l’historique, les versions vérifiées et la configuration observée. Les étapes initiales de sécurité Elastic restant à documenter sont précisées à la fin.
 
 ## Vérifications réseau
 ```bash
