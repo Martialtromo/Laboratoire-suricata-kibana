@@ -1,0 +1,7 @@
+smtp.env
+state.json
+.env
+*.key
+*.p12
+__pycache__/
+*.pyc
