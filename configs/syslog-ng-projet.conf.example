@@ -1,0 +1,65 @@
+source s_projet_eve {
+    file("/var/log/suricata/eve.json"
+        flags(no-parse)
+        follow-freq(1)
+    );
+};
+
+destination d_projet_eve {
+    http(persist-name("projet_suricata_http")
+        url("https://localhost:9200/_bulk")
+        method("POST")
+        user("projet_ingest")
+        password("REMPLACER_LOCALEMENT")
+        headers("Content-Type: application/x-ndjson")
+        body("{\"index\":{\"_index\":\"projet-suricata-${YEAR}${MONTH}${DAY}\"}}\n${MESSAGE}\n")
+        tls(
+            ca-file("/etc/syslog-ng/certs/http_ca.crt")
+            peer-verify(yes)
+        )
+        batch-lines(1)
+        workers(1)
+    );
+};
+
+log {
+    source(s_projet_eve);
+    destination(d_projet_eve);
+    flags(flow-control);
+};
+source s_projet_web {
+    file("/var/log/nginx/access.log" flags(no-parse));
+    file("/var/log/nginx/error.log" flags(no-parse));
+};
+
+filter f_projet_auth {
+    facility(auth, authpriv);
+};
+
+destination d_projet_context {
+    http(persist-name("projet_context_http")
+        url("https://localhost:9200/_bulk")
+        method("POST")
+        user("projet_ingest")
+        password("REMPLACER_LOCALEMENT")
+        headers("Content-Type: application/x-ndjson")
+        body("{\"index\":{\"_index\":\"projet-system-${YEAR}${MONTH}${DAY}\"}}\n$(format-json timestamp=${ISODATE} host=${HOST} program=${PROGRAM} message=${MESSAGE})\n")
+        tls(
+            ca-file("/etc/syslog-ng/certs/http_ca.crt")
+            peer-verify(yes)
+        )
+        batch-lines(1)
+        workers(1)
+    );
+};
+
+log {
+    source(s_projet_web);
+    destination(d_projet_context);
+};
+
+log {
+    source(s_src);
+    filter(f_projet_auth);
+    destination(d_projet_context);
+};
