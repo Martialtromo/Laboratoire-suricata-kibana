@@ -33,5 +33,7 @@ sont décrites dans le guide des notifications.
 - [Recherche Kibana sans alerte correspondante](controle-negatif-kibana.jpeg)
 
 Ces captures montrent les résultats aux dates indiquées.
-Elles ne constituent pas une validation après redémarrage
-du serveur.
+Les preuves de validation après redémarrage du 20 octobre 2026
+sont présentées dans le guide d’installation.
+
+- [Voir la validation après redémarrage](../docs/installation.md#validation-après-redémarrage-du-20-octobre-2026)
