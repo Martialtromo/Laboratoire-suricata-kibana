@@ -231,7 +231,11 @@ La sécurité et le chiffrement HTTPS de l’API sont activés. L’API écoute 
 
 Le fichier `http.p12` contient du matériel cryptographique privé et reste hors du dépôt. Les clients Kibana et syslog-ng utilisent un certificat d’autorité pour vérifier le certificat du serveur.
 
-Ces paramètres décrivent l’installation observée. Ils ne suffisent pas à recréer les certificats ni les comptes et leurs autorisations.
+Ces paramètres décrivent l’installation observée.
+La reproduction utilise la sécurité automatique Elasticsearch
+et l’enrôlement Kibana décrits plus bas. Le compte de collecte
+et ses autorisations sont détaillés dans la section
+« Compte de collecte Elasticsearch ».
 ## Validation des services et des configurations
 
 Vérification effectuée le 20 octobre 2026 à 02:51
