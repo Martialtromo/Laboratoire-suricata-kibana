@@ -242,3 +242,34 @@ Elle ne constitue pas une validation après redémarrage ni,
 à elle seule, une preuve de collecte de nouveaux événements.
 ### Capture de validation
 [Validation des services et des configurations](../captures/Validation-services-configurations.jpeg)
+## Compte de collecte Elasticsearch
+
+Syslog-ng utilise le compte dédié `projet_ingest`,
+auquel le rôle `projet_writer` est attribué.
+
+Configuration du rôle observée dans Kibana :
+
+| Paramètre | Valeur |
+|---|---|
+| Rôle | `projet_writer` |
+| Modèle d’index | `projet-*` |
+| Privilèges d’index | `write`, `auto_configure` |
+| Privilèges de cluster | Aucun sélectionné |
+
+### Reproduction dans Kibana
+
+1. Ouvrir Stack Management → Security → Roles.
+2. Créer le rôle `projet_writer`.
+3. Ajouter le modèle d’index `projet-*`.
+4. Sélectionner `write` et `auto_configure`.
+5. Enregistrer le rôle.
+6. Dans Security → Users, créer `projet_ingest`
+   et lui attribuer ce rôle.
+7. Définir un mot de passe localement et le renseigner
+   dans les destinations HTTP de syslog-ng.
+
+Sur une installation existante, vérifier le compte et
+le rôle sans les recréer ni écraser le mot de passe.
+
+Le compte de collecte ne possède pas le rôle `superuser`.
+Son mot de passe reste hors du dépôt GitHub.
