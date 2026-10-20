@@ -148,9 +148,19 @@ Les paramètres suivants ont été relevés dans `/etc/kibana/kibana.yml` :
 ```yaml
 server.host: "192.168.56.102"
 elasticsearch.hosts: ["https://127.0.0.1:9200"]
+elasticsearch.ssl.certificateAuthorities: ["/var/lib/kibana/ca_1792118765468.crt"]
 ```
 
-Le paramètre `elasticsearch.ssl.certificateAuthorities` désigne un certificat d’autorité présent dans `/var/lib/kibana/`. Son chemin doit être adapté à chaque installation.
+Le paramètre `elasticsearch.ssl.certificateAuthorities` désigne un certificat d’autorité présent dans `/var/lib/kibana/`. Ces paramètres ont été relevés dans `/etc/kibana/kibana.yml`.
+
+Kibana écoute sur l’adresse du serveur du laboratoire et se
+connecte à Elasticsearch en HTTPS sur l’interface locale.
+Le fichier `/var/lib/kibana/ca_1792118765468.crt` est le
+certificat d’autorité configuré pour cette connexion.
+
+Sur une nouvelle installation, le nom du certificat peut
+différer : utiliser le chemin réellement généré et vérifier
+que le service Kibana peut lire ce fichier.
 
 L’interface Kibana du laboratoire est accessible à :
 `http://192.168.56.102:5601`
