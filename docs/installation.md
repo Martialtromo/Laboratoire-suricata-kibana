@@ -274,3 +274,51 @@ le rôle sans les recréer ni écraser le mot de passe.
 
 Le compte de collecte ne possède pas le rôle `superuser`.
 Son mot de passe reste hors du dépôt GitHub.
+
+## Connexion initiale de Kibana à Elasticsearch
+
+Lors de l’installation du laboratoire, Kibana a été connecté
+à Elasticsearch à l’aide d’un jeton d’enrôlement.
+
+### Procédure de reproduction
+
+Sur une nouvelle installation avec la sécurité automatique
+Elasticsearch activée, démarrer Elasticsearch :
+
+```bash
+sudo systemctl enable --now elasticsearch
+```
+
+Générer ensuite un jeton d’enrôlement pour Kibana :
+
+```bash
+sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+```
+
+Démarrer Kibana :
+
+```bash
+sudo systemctl enable --now kibana
+```
+
+Ouvrir l’adresse du laboratoire dans le navigateur :
+
+http://192.168.56.102:5601
+
+Dans l’assistant de configuration initiale, coller le jeton.
+Si un code de vérification est demandé, l’obtenir sur le serveur :
+
+```bash
+sudo /usr/share/kibana/bin/kibana-verification-code
+```
+
+Terminer l’assistant, puis se connecter avec le compte
+administrateur `elastic` et son mot de passe défini localement.
+
+Vérifier ensuite les paramètres de connexion et le certificat
+d’autorité dans `/etc/kibana/kibana.yml`, comme indiqué
+dans la section de configuration observée.
+
+Cette procédure concerne une nouvelle installation.
+Ne pas réenrôler le Kibana déjà fonctionnel du laboratoire.
+Les jetons et mots de passe ne sont pas publiés dans ce dépôt.
