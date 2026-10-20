@@ -17,8 +17,7 @@ Chaîne : trafic client → Suricata → eve.json → syslog-ng → Elasticsearc
 
 Voir la [documentation de la collecte avec syslog-ng](docs/syslog-ng.md).
 
-Le script de notification lit directement eve.json et transmet les messages via Gmail SMTP vers Outlook scolaire.
-
+Le script lit directement `eve.json` et envoie les notifications par Gmail SMTP à la boîte de réception Gmail configurée pour le laboratoire.
 ## Résultats
 Les cinq SID 1000001 à 1000005 ont déclenché dans eve.json et ont été retrouvés dans Discover. Le courriel automatique a été reçu ; le service systemd est actif et activé au démarrage. L'anti-doublons a été testé pour le même SID et la même IP source.
 
