@@ -86,7 +86,9 @@ d’Elasticsearch.
 
 La configuration de collecte observée est présentée dans le [guide syslog-ng](syslog-ng.md). Aucun mot de passe réel ne doit être ajouté au dépôt.
 ## Prérequis
-Deux VM Ubuntu joignables sur 192.168.56.0/24 sont nécessaires. Le serveur héberge Suricata, Nginx, SSH, syslog-ng, Elasticsearch et Kibana. Ce guide rassemble les commandes d’installation retrouvées dans l’historique, les versions vérifiées et la configuration observée. Les étapes initiales de sécurité Elastic restant à documenter sont précisées à la fin.
+Deux VM Ubuntu joignables sur 192.168.56.0/24 sont nécessaires. Le serveur héberge Suricata, Nginx, SSH, syslog-ng, Elasticsearch et Kibana. Ce guide rassemble les commandes d’installation retrouvées dans l’historique, les versions vérifiées et la configuration observée. La connexion initiale de Kibana par jeton d’enrôlement,
+les paramètres de sécurité observés et les droits du compte
+de collecte sont détaillés dans les sections suivantes.
 
 ## Vérifications réseau
 ```bash
