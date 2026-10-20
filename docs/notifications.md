@@ -19,7 +19,7 @@ Le script sélectionne event_type=alert et les SID 1000001 à 1000005. Il envoie
 
 Le script n'offre pas une garantie de livraison exactement une fois : un arrêt entre l'acceptation SMTP et la sauvegarde de l'état peut produire un doublon. Une rotation pendant un arrêt prolongé peut laisser des événements d'un ancien fichier non traités. Ces cas ne sont pas testés.
 
-## Service
+
 ## Installation du service
 
 Les commandes suivantes permettent de reproduire l’installation.
