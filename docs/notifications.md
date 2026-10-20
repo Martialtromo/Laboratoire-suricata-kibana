@@ -75,6 +75,10 @@ entre deux notifications.
 
 Éviter de lancer une seconde instance manuelle du script
 pendant que le service fonctionne.
+## Captures de preuve
+
+- [Voir le courriel d’alerte reçu](../captures/Courriel-alerte.jpeg)
+- [Voir l’état du service et le journal d’envoi](../captures/Service-actif.jpeg)
 ## Preuves observées
 Le message de test SMTP a été reçu. Une alerte SQL a ensuite déclenché un courriel depuis le script manuel. Le service a démarré à 22:55:44 avec Surveillance EVE active. Le journal indique Courriel envoye pour 1000003|192.168.56.101 à 22:57:28 ; réception à 22:57 confirmée. Deux requêtes supplémentaires dans les cinq minutes n'ont pas généré de courriel supplémentaire selon le test rapporté.
 
