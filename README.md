@@ -13,7 +13,9 @@ Détecter cinq comportements réseau contrôlés, retrouver les alertes dans Ela
 
 Le trafic du laboratoire passe par `enp0s8`. Sur le serveur, `enp0s3` porte aussi `10.0.2.15` et n'est plus l'interface choisie pour les essais entre VM.
 
-Chaîne : trafic client → Suricata → eve.json → collecte vers Elasticsearch → Discover et dashboard Kibana. Le composant de collecte intermédiaire n'est pas identifié dans ce dossier.
+Chaîne : trafic client → Suricata → eve.json → syslog-ng → Elasticsearch → Discover et dashboard Kibana.
+
+Voir la [documentation de la collecte avec syslog-ng](docs/syslog-ng.md).
 
 Le script de notification lit directement eve.json et transmet les messages via Gmail SMTP vers Outlook scolaire.
 
